@@ -6,7 +6,7 @@ import datetime
 
 def get_exchange_rate():
     base = input("Enter base currency (e.g., USD, CAD, EUR): ").upper()
-    target = input("Enter target currency (e.g., JPN, KRW, PHP): ").upper()
+    target = input("Enter target currency (e.g., JPY, KRW, PHP): ").upper()
     today = datetime.date.today()
     url = f"https://api.frankfurter.dev/v1/latest?base={base}&symbols={target}"
 
@@ -54,6 +54,7 @@ if convert is not None:
     compute_income(convert)
 else:
     print("Could not fetch exchange rate. Try again later.")
+
 
 
 
