@@ -2,7 +2,7 @@ import time
 import requests
 import datetime
 
-# Just for fun rate calculator, change USD to any currency or whatever
+# Just for fun rate calculator, change base currency to any currency or whatever
 
 def get_exchange_rate():
     base = input("Enter base currency (e.g., USD, CAD, EUR): ").upper()
@@ -51,10 +51,10 @@ print("=======================\n")
 convert, base, target = get_exchange_rate()
 if convert is not None:
     print(f"\nExchange rate: 1 {base} = {convert:.2f} {target}\n")
-
     compute_income(convert)
 else:
     print("Could not fetch exchange rate. Try again later.")
+
 
 
 
