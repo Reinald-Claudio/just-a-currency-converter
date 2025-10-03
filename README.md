@@ -13,4 +13,4 @@ Fetches the real-time currency exchange rate using Frankfurter's public API, and
 - No API keys needed - uses [Frankfurter](https://frankfurter.dev/) for free exchange rates.
 - Please don't suspend my acc. again, GitHub Gods. 🙏
 
-![Output]()
+![Output](https://github.com/Reinald-Claudio/just-a-currency-converter/blob/main/fixed-output.png?raw=true)
