@@ -1,25 +1,31 @@
 import time
 import requests
-from datetime import datetime
 import datetime
 
 # Just for fun rate calculator, change USD to any currency or whatever
 
-def usd_php():
-    base = "USD"
+def get_exchange_rate():
+    base = input("Enter base currency (e.g., USD, CAD, EUR): ").upper()
+    target = input("Enter target currency (e.g., JPN, KRW, PHP): ").upper()
     today = datetime.date.today()
-    url = f"https://api.frankfurter.dev/v1/latest?base={base}&symbols=PHP"
+    url = f"https://api.frankfurter.dev/v1/latest?base={base}&symbols={target}"
 
-    response = requests.get(url)
-    data = response.json()
-    #print(f"{data}\n")
-    php_rate = data["rates"]["PHP"]
-    return php_rate
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        rate = data["rates"][target]
+        #print(f"{data}\n")
+        return rate, base, target
+    except Exception as e:
+        print("\nError fetching exchange rate:", e)
+        return None, base, target
+
+
 
 def compute_income(convert):
     try:
         rate = float(input("How much is your hourly rate?: "))
-        #usd_to_php = float(input("Currently, how much is 1 USD to PHP?: "))
         tax = float(input("Enter your tax %?: "))
         month_hours = 160
         tax_decimal = tax / 100
@@ -42,8 +48,13 @@ def compute_income(convert):
 print("   Salary Calculator")
 print("=======================\n")
 
-convert = usd_php()
-compute_income(convert)
+convert, base, target = get_exchange_rate()
+if convert is not None:
+    print(f"\nExchange rate: 1 {base} = {convert:.2f} {target}\n")
+
+    compute_income(convert)
+else:
+    print("Could not fetch exchange rate. Try again later.")
 
 
 
