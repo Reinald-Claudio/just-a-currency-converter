@@ -38,8 +38,8 @@ def compute_income(convert):
         time.sleep(1)
         print(f"\n{'Salary Table':<26}")
         print("==========================|===============|")
-        print(f"{'Monthly Income by $$':<26}| ${m_income:<13.2f}|")
-        print(f"{'Converted to PHP Monthly':<26}| PHP {converted_monthly_income:<10.2f}|")
+        print(f"{'Monthly Income by ' + base:<26}| ${m_income:<13.2f}|")
+        print(f"{'Converted to ' + target + ' Monthly':<26}| PHP {converted_monthly_income:<10.2f}|")
 
     except ValueError:
         print("\nYour input is invalid. Use numbers only!!\n")
@@ -54,6 +54,7 @@ if convert is not None:
     compute_income(convert)
 else:
     print("Could not fetch exchange rate. Try again later.")
+
 
 
 
